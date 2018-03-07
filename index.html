@@ -1,0 +1,89 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" href="public/css/app.min.css" class="c3 bootstrap vue-datepicker app" >
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				
+				<a class="navbar-brand" href="#">FIX</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="">
+						<a hrf="#">Author: Emmanuel Romero</a>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row" id="app">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Comportamiento del tipo de cambio entre MXN y USD
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div id="chart"></div>
+							</div>
+							<div class="col-md-12">
+								<div clas="row">
+									<form v-on:submit.prevent="onSubmit($event)">
+										<div class="col-md-12" v-bind:class="errorObj.errorContClass">
+											<div class="alert alert-danger" role="alert">{{errorObj.errorMessage}}</div>
+										</div>
+										<div class="col-md-4">
+
+											<p>{{rangeSelection}}</p>
+											<div class="form-group">
+												<label for="">Seleccioa la moneda Base</label>
+												<select class="form-control" id="baseCoin" v-model="baseCoin">
+													<option v-for="coin in coins" v-bind:value="coin.value">
+														{{ coin.text }}
+													</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="">Seleccioa la moneda destino</label>
+												<select class="form-control" v-model="toFixCoin" id="toFixCoin">
+													<option v-for="coin in coins" v-bind:value="coin.value" >
+														{{ coin.text }}
+													</option>
+												</select>
+											</div>
+											<template>
+												<div class="form-group">
+													<label for="">Email address</label>
+													<br/>
+													<vue-datepicker-local  :local="local" :disabled-date="disabledDate" v-model="emptyRange" clearable/>
+												</div>
+											</template>
+										
+											<button type="submit" class="btn btn-primary">Consultar</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="public/js/app.min.js" class="vue vue-datepicker axios d3 moment app"></script>
+</body>
+
+</html>
